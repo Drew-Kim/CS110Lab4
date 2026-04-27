@@ -10,6 +10,13 @@ const API_KEY = "PASTE_YOUR_NYT_API_KEY_HERE";
 
 with a real New York Times developer API key.
 
+Code structure:
+
+- index.html contains the page structure. It has the filter radio buttons and an empty article list area.
+- style.css contains all page styling. It controls the filter box, article cards, colors, spacing, and responsive layout.
+- main.js contains the JavaScript logic. It reads the selected filters, calls the NYT API with fetch, and creates the article cards.
+- README.md explains how this part is organized and how to run it.
+
 Implementation notes:
 
 - The page uses the Fetch API to call the NYT Popular Articles API.
@@ -17,3 +24,5 @@ Implementation notes:
 - The filter form lets the user choose most viewed, most shared, or most emailed articles.
 - The time frame options are day, week, and month.
 - Each article is built inside a try/catch block. If required data is missing, that article is skipped and the next article is used.
+- The page updates when the user changes a radio button, without refreshing the browser.
+- The layout changes on smaller screens so the filter appears above the article list.
