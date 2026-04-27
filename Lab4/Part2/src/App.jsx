@@ -1,3 +1,4 @@
+import React from "react";
 import { BrowserRouter, NavLink, Route, Routes } from "react-router-dom";
 import Board from "./Board.jsx";
 import RulesPage from "./RulesPage.jsx";
