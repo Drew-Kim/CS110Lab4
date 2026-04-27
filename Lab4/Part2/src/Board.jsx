@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+// A Square is one button on the Tic Tac Toe board.
 function Square({ value, onSquareClick }) {
   return (
     <button className="square" onClick={onSquareClick}>
@@ -8,7 +9,9 @@ function Square({ value, onSquareClick }) {
   );
 }
 
+// This function checks the board to see if X or O has won.
 function calculateWinner(squares) {
+  // Each array contains three square positions that make a winning line.
   const winningLines = [
     [0, 1, 2],
     [3, 4, 5],
@@ -23,6 +26,7 @@ function calculateWinner(squares) {
   for (const line of winningLines) {
     const [a, b, c] = line;
 
+    // If all three positions have the same player mark, that player wins.
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
       return squares[a];
     }
@@ -31,19 +35,27 @@ function calculateWinner(squares) {
   return null;
 }
 
+// The board is full when every square has either X or O in it.
 function boardIsFull(squares) {
   return squares.every((square) => square !== null);
 }
 
 export default function Board() {
+  // xIsNext keeps track of whose turn it is. X starts first.
   const [xIsNext, setXIsNext] = useState(true);
+
+  // squares stores the current value of all 9 board squares.
   const [squares, setSquares] = useState(Array(9).fill(null));
+
+  // scores keeps track of how many games X and O have won.
   const [scores, setScores] = useState({ X: 0, O: 0 });
 
+  // These values are recalculated every time the board changes.
   const winner = calculateWinner(squares);
   const isDraw = !winner && boardIsFull(squares);
   const currentPlayer = xIsNext ? "X" : "O";
 
+  // The status message changes depending on the game state.
   let status = `Next player: ${currentPlayer}`;
 
   if (winner) {
@@ -53,18 +65,22 @@ export default function Board() {
   }
 
   function handleClick(i) {
+    // Do nothing if the square is already filled or the game is over.
     if (squares[i] || winner) {
       return;
     }
 
+    // Make a copy of the board before changing it.
     const nextSquares = squares.slice();
     nextSquares[i] = currentPlayer;
 
+    // Check if this move created a winner.
     const nextWinner = calculateWinner(nextSquares);
 
     setSquares(nextSquares);
     setXIsNext(!xIsNext);
 
+    // If someone won, add 1 point to that player's score.
     if (nextWinner) {
       setScores((currentScores) => ({
         ...currentScores,
@@ -74,6 +90,7 @@ export default function Board() {
   }
 
   function startNewGame() {
+    // Clear the board and let X start again. The scores stay the same.
     setSquares(Array(9).fill(null));
     setXIsNext(true);
   }
