@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NYT Popular Articles</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="main.js" defer></script>
+  </head>
+  <body>
+    <main class="page">
+      <aside class="filter-card" aria-label="Article filters">
+        <h1>Filter</h1>
+
+        <form id="filter-form">
+          <fieldset>
+            <legend>Sort By:</legend>
+
+            <label>
+              <input type="radio" name="criteria" value="viewed" checked />
+              Most Viewed
+            </label>
+
+            <label>
+              <input type="radio" name="criteria" value="shared" />
+              Most Shared
+            </label>
+
+            <label>
+              <input type="radio" name="criteria" value="emailed" />
+              Most Emailed
+            </label>
+          </fieldset>
+
+          <fieldset>
+            <legend>Time Frame:</legend>
+
+            <label>
+              <input type="radio" name="period" value="1" />
+              Day
+            </label>
+
+            <label>
+              <input type="radio" name="period" value="7" />
+              Week
+            </label>
+
+            <label>
+              <input type="radio" name="period" value="30" checked />
+              Month
+            </label>
+          </fieldset>
+        </form>
+      </aside>
+
+      <section class="article-section" aria-label="Popular articles">
+        <p id="status-message" class="status-message"></p>
+        <div id="article-list" class="article-list"></div>
+      </section>
+    </main>
+  </body>
+</html>
